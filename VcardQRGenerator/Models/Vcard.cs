@@ -54,5 +54,8 @@ public class Vcard
     [Display(Name = "Website")]
     public string? Website { get; set; }
     public string? QRCodeUrl { get; set; }
+
+    [Display(Name = "Date")]
+    public DateTime CreatedDate { get; set; } = DateTime.Now;
 }
 

@@ -24,7 +24,7 @@
             align-items: center;
             min-height: 100vh;
             flex-direction: column;
-            padding: 100px;
+            padding: 80px;
         }
 
         .container {
@@ -32,7 +32,6 @@
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            max-width: 1200px;
             width: 100%;
         }
 
@@ -60,22 +59,24 @@
             min-width: 300px;
         }
 
-        .details-card {
-            margin-right: 20px;
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
         }
 
-            .details-card div {
-                margin-bottom: 10px;
-            }
+        .details-item {
+            display: flex;
+            flex-direction: column;
+        }
 
-            .details-card label {
+            .details-item label {
                 font-weight: 500;
                 color: #555;
                 display: block;
             }
 
-            .details-card span {
-                display: block;
+            .details-item span {
                 margin-top: 5px;
                 color: #333;
             }
@@ -100,14 +101,92 @@
             cursor: pointer;
             font-size: 16px;
             transition: background-color 0.3s ease;
-            display: block;
-            margin: 20px auto 0;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             text-decoration: none;
         }
 
             .back-btn:hover {
                 background-color: #0056b3;
+            }
+
+        .top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .back-icon {
+            width: 16px;
+            height: 16px;
+            fill: white;
+        }
+
+        .qr-popup-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+            .qr-popup-btn:hover {
+                background-color: #218838;
+            }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+            .modal-content img {
+                width: 100%;
+                height: auto;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+            }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+            .close-btn:hover,
+            .close-btn:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
             }
     </style>
 </head>
@@ -115,38 +194,72 @@
 <body>
 
     <div class="container">
-        <h1>VCard Details</h1>
+        <div class="top">
+            <a href="@Url.Action("Index", "VCard")" class="back-btn">
+                <svg class="back-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M8.707 1.707a1 1 0 0 0-1.414-1.414l-6 6a1 1 0 0 0 0 1.414l6 6a1 1 0 0 0 1.414-1.414L4.414 8l4.293-4.293z" />
+                </svg>
+                Back to List
+            </a>
+            <h1>VCard Details</h1>
+        </div>
 
         <div class="details-qr-container">
             <div class="details-card">
-                <div><label>First Name:</label> <span>@Model.FirstName</span></div>
-                <div><label>Last Name:</label> <span>@Model.LastName</span></div>
-                <div><label>Mobile:</label> <span>@Model.Mobile</span></div>
-                <div><label>Phone:</label> <span>@Model.Phone</span></div>
-                <div><label>Fax:</label> <span>@Model.Fax</span></div>
-                <div><label>Email:</label> <span>@Model.Email</span></div>
-                <div><label>Company:</label> <span>@Model.Company</span></div>
-                <div><label>Job Title:</label> <span>@Model.JobTitle</span></div>
-                <div><label>Street:</label> <span>@Model.Street</span></div>
-                <div><label>City:</label> <span>@Model.City</span></div>
-                <div><label>State:</label> <span>@Model.State</span></div>
-                <div><label>ZIP:</label> <span>@Model.Zip</span></div>
-                <div><label>Country:</label> <span>@Model.Country</span></div>
-                <div><label>Website:</label> <span>@Model.Website</span></div>
-            </div>
-
-            @if (!string.IsNullOrEmpty(Model.QRCodeUrl))
-            {
-                <div class="qr-code-card">
-                    <h2>QR Code</h2>
-                    <img src="@Model.QRCodeUrl" alt="QR Code" />
+                <div class="details-grid">
+                    <div class="details-item"><label>First Name:</label> <span>@Model.FirstName</span></div>
+                    <div class="details-item"><label>Last Name:</label> <span>@Model.LastName</span></div>
+                    <div class="details-item"><label>Mobile:</label> <span>@Model.Mobile</span></div>
+                    <div class="details-item"><label>Phone:</label> <span>@Model.Phone</span></div>
+                    <div class="details-item"><label>Fax:</label> <span>@Model.Fax</span></div>
+                    <div class="details-item"><label>Email:</label> <span>@Model.Email</span></div>
+                    <div class="details-item"><label>Company:</label> <span>@Model.Company</span></div>
+                    <div class="details-item"><label>Job Title:</label> <span>@Model.JobTitle</span></div>
+                    <div class="details-item"><label>Street:</label> <span>@Model.Street</span></div>
+                    <div class="details-item"><label>City:</label> <span>@Model.City</span></div>
+                    <div class="details-item"><label>State:</label> <span>@Model.State</span></div>
+                    <div class="details-item"><label>ZIP:</label> <span>@Model.Zip</span></div>
+                    <div class="details-item"><label>Country:</label> <span>@Model.Country</span></div>
+                    <div class="details-item"><label>Website:</label> <span>@Model.Website</span></div>
+                    <div class="details-item"><label>Created Date:</label> <span>@Model.CreatedDate</span></div>
                 </div>
-            }
-        </div>
 
-        <a href="@Url.Action("Index", "VCard")" class="back-btn">Back to List</a>
+                <button class="qr-popup-btn" id="openModal">Show QR Code</button>
+            </div>
+        </div>
     </div>
 
-</body>
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            @if (!string.IsNullOrEmpty(Model.QRCodeUrl))
+            {
+                <h2>QR Code</h2>
+                <img src="@Model.QRCodeUrl" alt="QR Code" />
+            }
+        </div>
+    </div>
 
-</html>
+    <script>
+        var modal = document.getElementById("qrModal");
+
+        var openModalBtn = document.getElementById("openModal");
+
+        var closeModalBtn = document.getElementById("closeModal");
+
+        openModalBtn.addEventListener("click", function () {
+          modal.style.display = "block";
+        });
+
+        closeModalBtn.addEventListener("click", function () {
+          modal.style.display = "none";
+        });
+
+        window.addEventListener("click", function (event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        });
+    </script>
+
+</body>

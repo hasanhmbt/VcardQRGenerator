@@ -29,7 +29,6 @@
                                         <th>Email</th>
                                         <th>Company</th>
                                         <th>Country</th>
-                                        <th>State</th>
                                         <th>City</th>
                                         <th></th>
                                     </tr>
@@ -44,7 +43,6 @@
                                             <td>@Html.DisplayFor(modelItem => vcard.Email)</td>
                                             <td>@Html.DisplayFor(modelItem => vcard.Company)</td>
                                             <td>@Html.DisplayFor(modelItem => vcard.Country)</td>
-                                            <td>@Html.DisplayFor(modelItem => vcard.State)</td>
                                             <td>@Html.DisplayFor(modelItem => vcard.City)</td>
                                             <td>
                                                 <a asp-controller="VCard" asp-action="Edit" asp-route-id="@vcard.Id"><i class="fa-regular fa-pen-to-square"></i></a>
