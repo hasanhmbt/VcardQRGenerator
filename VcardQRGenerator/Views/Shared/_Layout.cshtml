@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCard Creator</title>
+    <link rel="shortcut icon" href="~/assets/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/icons/feather/feather.css">
+    <link rel="stylesheet" href="~/assets/plugins/datatables/datatables.min.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <style>
+        .header-one {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+        }
+
+            .header-logo img {
+                height: 30px;
+                width: auto;
+                margin-right: 10px;  
+            }
+
+            .header-logo span {
+                font-size: 18px;
+                font-weight: bold;
+                color: #333;
+            }
+
+        .top-nav-search {
+            flex-grow: 1;
+            margin-left: 330px;
+            width: 500px;
+        }
+
+            .top-nav-search form {
+                display: flex;
+                align-items: center;
+            }
+
+            .top-nav-search input {
+                flex-grow: 1;
+            }
+
+            .top-nav-search button {
+                background: none;
+                border: none;
+                padding: 0;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="header header-one">
+            <div class="header-logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/6978/6978255.png" alt="Website Logo">
+                <span>VCardApp</span>
+            </div>
+            <div class="top-nav-search">
+                <form class="d-flex align-items-center">
+                    <i class="fa-solid fa-search me-2"></i>
+                    <input type="text" class="form-control" placeholder="Search here">
+                    <button class="btn" type="submit"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        @RenderBody()
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+            <div id="sidebar-menu" class="sidebar-menu">
+                <ul class="sidebar-vertical">
+                    <li class="menu-title"><span>Options</span></li>
+                    <li>
+                        <a asp-controller="VCard" asp-action="Index"><i class="fa-solid fa-list"></i> <span>VCard List</span></a>
+                    </li>
+                    <li>
+                        <a asp-controller="VCard" asp-action="Create"><i class="fa-solid fa-plus"></i> <span>Create vCard</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/feather.min.js"></script>
+    <script src="~/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/plugins/datatables/datatables.min.js"></script>
+    <script src="~/assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+﻿@model Vcard
+
+@{
+    ViewData["Title"] = "Vcard";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vCard QR Code Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            padding:  100px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+            box-sizing: border-box;
+            width: 120%;
+        }
+
+        .form-section,
+        .qr-code-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section {
+            width: 95%;
+        }
+
+        .qr-code-section {
+            width: 50%;
+        }
+
+        h1,
+        h2 {
+            color: #444;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .generate-btn,
+        .download-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 20px auto 0;
+            width: 100%;
+            text-align: center;
+        }
+
+            .generate-btn:hover,
+            .download-btn:hover {
+                background-color: #0056b3;
+            }
+
+        .qr-code-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #qr-code {
+            width: 300px;
+            height: 300px;
+            background: #f1f1f1;
+            margin: 25px 0;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            color: #888;
+            border-radius: 10px;
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .country-city-group {
+            display: flex;
+            gap: 20px;
+        }
+
+            .country-city-group .form-group {
+                flex: 1;
+            }
+
+                .country-city-group .form-group label {
+                    margin-bottom: 8px;
+                }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="form-section">
+            <h1>Create Your vCard QR Code</h1>
+            <form asp-action="Create" asp-controller="VCard" method="post" id="vcard-form">
+                <div class="form-group">
+                    <label asp-for="FirstName" ></label>
+                    <input type="text" id="first-name" name="FirstName" class="form-control" placeholder="First name" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName"></label>
+                    <input type="text" id="last-name" name="LastName" class="form-control" placeholder="Last name" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Mobile"></label>
+
+                    <input type="tel" id="mobile" name="Mobile" class="form-control" placeholder="Mobile number" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phone"></label>
+
+                    <input type="tel" id="phone" name="Phone" class="form-control" placeholder="Phone" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+
+                    <input type="email" id="email" name="Email" class="form-control" placeholder="your@email.com" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Company"></label>
+                    <input type="text" id="company" name="Company" class="form-control" placeholder="Company" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="JobTitle"></label>
+                    <input type="text" id="job-title" name="JobTitle" class="form-control" placeholder="Your Job" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Street"></label>
+                    <input type="text" id="street" name="Street" class="form-control" placeholder="Street" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="City"></label>
+                    <input type="text" id="city" name="City" class="form-control" placeholder="City" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="State"></label>
+                    <input type="text" id="state" name="State" class="form-control" placeholder="State" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Zip"></label>
+                    <input type="text" id="zip" name="Zip" class="form-control" placeholder="Postal code" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Country"></label>
+                    <input type="text" id="country" name="Country" class="form-control" placeholder="Country" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Fax"></label>
+                    <input type="tel" id="fax" name="Fax" class="form-control" placeholder="Fax" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Website"></label>
+                    <input type="url" id="website" name="Website" class="form-control" placeholder="www.your-website.com" />
+                </div>
+                <button type="submit" class="generate-btn">Generate QR Code</button>
+            </form>
+        </div>
+        <div class="qr-code-section">
+            <h2>Your QR Code</h2>
+            <div id="qr-code">QR Code Preview</div>
+            <button id="download-btn" class="download-btn" style="display:none;">Download QR Code</button>
+        </div>
+    </div>
+
+   @*  <script>
+        function generateQRCode() {
+            const firstName = document.getElementById("first-name").value.trim();
+            const lastName = document.getElementById("last-name").value.trim();
+            const mobile = document.getElementById("mobile").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const fax = document.getElementById("fax").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const company = document.getElementById("company").value.trim();
+            const jobTitle = document.getElementById("job-title").value.trim();
+            const street = document.getElementById("street").value.trim();
+            const city = document.getElementById("city").value.trim();
+            const state = document.getElementById("state").value.trim();
+            const zip = document.getElementById("zip").value.trim();
+            const country = document.getElementById("country").value.trim();
+            const website = document.getElementById("website").value.trim();
+
+            const vCard = `BEGIN:VCARD
+VERSION:3.0
+N:${lastName};${firstName}
+FN:${firstName} ${lastName}
+ORG:${company}
+TITLE:${jobTitle}
+TEL;TYPE=CELL:${mobile}
+TEL;TYPE=WORK,VOICE:${phone}
+TEL;TYPE=FAX:${fax}
+ADR;TYPE=WORK:;;${street};${city};${state};${zip};${country}
+EMAIL:${email}
+URL:${website}
+END:VCARD`.trim();
+
+            const vCardEncoded = encodeURIComponent(vCard);
+
+            const qrCodeUrl = `https://quickchart.io/qr?text=${vCardEncoded}&size=300`;
+
+            const qrCodeElement = document.getElementById("qr-code");
+            qrCodeElement.innerHTML = `<img src="${qrCodeUrl}" alt="QR Code" />`;
+
+            const downloadBtn = document.getElementById("download-btn");
+            downloadBtn.href = qrCodeUrl;
+            downloadBtn.style.display = "block";
+        }
+
+        document.getElementById("vcard-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            generateQRCode();
+        });
+    </script> *@
+
+</body>
+
+</html>
