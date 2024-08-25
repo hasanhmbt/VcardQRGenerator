@@ -1,0 +1,152 @@
+﻿@model VcardQRGenerator.Models.Vcard
+
+@{
+    ViewData["Title"] = "VCard Details";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            padding: 100px;
+        }
+
+        .container {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #444;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .details-qr-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .details-card,
+        .qr-code-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .details-card {
+            margin-right: 20px;
+        }
+
+            .details-card div {
+                margin-bottom: 10px;
+            }
+
+            .details-card label {
+                font-weight: 500;
+                color: #555;
+                display: block;
+            }
+
+            .details-card span {
+                display: block;
+                margin-top: 5px;
+                color: #333;
+            }
+
+        .qr-code-card {
+            text-align: center;
+        }
+
+            .qr-code-card img {
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                width: 300px;
+                height: 300px;
+            }
+
+        .back-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 20px auto 0;
+            text-align: center;
+            text-decoration: none;
+        }
+
+            .back-btn:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>VCard Details</h1>
+
+        <div class="details-qr-container">
+            <div class="details-card">
+                <div><label>First Name:</label> <span>@Model.FirstName</span></div>
+                <div><label>Last Name:</label> <span>@Model.LastName</span></div>
+                <div><label>Mobile:</label> <span>@Model.Mobile</span></div>
+                <div><label>Phone:</label> <span>@Model.Phone</span></div>
+                <div><label>Fax:</label> <span>@Model.Fax</span></div>
+                <div><label>Email:</label> <span>@Model.Email</span></div>
+                <div><label>Company:</label> <span>@Model.Company</span></div>
+                <div><label>Job Title:</label> <span>@Model.JobTitle</span></div>
+                <div><label>Street:</label> <span>@Model.Street</span></div>
+                <div><label>City:</label> <span>@Model.City</span></div>
+                <div><label>State:</label> <span>@Model.State</span></div>
+                <div><label>ZIP:</label> <span>@Model.Zip</span></div>
+                <div><label>Country:</label> <span>@Model.Country</span></div>
+                <div><label>Website:</label> <span>@Model.Website</span></div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.QRCodeUrl))
+            {
+                <div class="qr-code-card">
+                    <h2>QR Code</h2>
+                    <img src="@Model.QRCodeUrl" alt="QR Code" />
+                </div>
+            }
+        </div>
+
+        <a href="@Url.Action("Index", "VCard")" class="back-btn">Back to List</a>
+    </div>
+
+</body>
+
+</html>

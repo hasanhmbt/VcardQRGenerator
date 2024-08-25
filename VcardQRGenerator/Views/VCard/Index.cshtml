@@ -26,33 +26,30 @@
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Mobile</th>
-                                        <th>Phone</th>
                                         <th>Email</th>
                                         <th>Company</th>
-                                        <th>Job Title</th>
                                         <th>Country</th>
                                         <th>State</th>
                                         <th>City</th>
-                                        <th>Street</th>
-                                        <th>Zip</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
+                                    @foreach (var vcard in Model)
                                     {
                                         <tr>
-                                            <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.LastName)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Mobile)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Phone)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Company)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.JobTitle)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Country)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.State)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.City)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Street)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Zip)</td>
+                                            <td>@Html.DisplayFor(modelItem => vcard.FirstName)</td>
+                                            <td>@Html.DisplayFor(modelItem => vcard.LastName)</td>
+                                            <td>@Html.DisplayFor(modelItem => vcard.Mobile)</td>
+                                            <td>@Html.DisplayFor(modelItem => vcard.Email)</td>
+                                            <td>@Html.DisplayFor(modelItem => vcard.Company)</td>
+                                            <td>@Html.DisplayFor(modelItem => vcard.Country)</td>
+                                            <td>@Html.DisplayFor(modelItem => vcard.State)</td>
+                                            <td>@Html.DisplayFor(modelItem => vcard.City)</td>
+                                            <td>
+                                                <a asp-controller="VCard" asp-action="Edit" asp-route-id="@vcard.Id"><i class="fa-regular fa-pen-to-square"></i></a>
+                                                <a asp-controller="VCard" asp-action="Details" asp-route-id="@vcard.Id"><i class="fa-solid fa-circle-right"></i></a>
+                                            </td>
                                         </tr>
                                     }
 

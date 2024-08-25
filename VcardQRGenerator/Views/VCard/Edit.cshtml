@@ -1,7 +1,7 @@
-﻿@model Vcard
+﻿ @model Vcard
 
 @{
-    ViewData["Title"] = "Vcard";
+    ViewData["Title"] = "Vcard Edit";
 }
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vCard QR Code Generator</title>
+    <title>Edit vCard QR Code </title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -152,10 +152,10 @@
 
     <div class="container">
         <div class="form-section">
-            <h1>Create Your vCard QR Code</h1>
+            <h1>Edit vCard QR Code</h1>
             <form asp-action="Create" asp-controller="VCard" method="post" id="vcard-form">
                 <div class="form-group">
-                    <label asp-for="FirstName" ></label>
+                    <label asp-for="FirstName"></label>
                     <input type="text" id="first-name" name="FirstName" class="form-control" placeholder="First name" asp-for="FirstName" />
                 </div>
                 <div class="form-group">
@@ -168,49 +168,49 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Phone"></label>
-                    <input type="tel" id="phone" name="Phone" class="form-control" placeholder="Phone" asp-for="Phone"/>
+                    <input type="tel" id="phone" name="Phone" class="form-control" placeholder="Phone" asp-for="Phone" />
                 </div>
                 <div class="form-group">
                     <label asp-for="Email"></label>
-                    <input type="email" id="email" name="Email" class="form-control" placeholder="your@email.com" asp-for="Email"/>
+                    <input type="email" id="email" name="Email" class="form-control" placeholder="your@email.com" asp-for="Email" />
                 </div>
                 <div class="form-group">
                     <label asp-for="Company"></label>
-                    <input type="text" id="company" name="Company" class="form-control" placeholder="Company" asp-for="Company"/>
+                    <input type="text" id="company" name="Company" class="form-control" placeholder="Company" asp-for="Company" />
                 </div>
                 <div class="form-group">
                     <label asp-for="JobTitle"></label>
-                    <input type="text" id="job-title" name="JobTitle" class="form-control" placeholder="Your Job" asp-for="JobTitle"/>
+                    <input type="text" id="job-title" name="JobTitle" class="form-control" placeholder="Your Job" asp-for="JobTitle" />
                 </div>
                 <div class="form-group">
                     <label asp-for="Street"></label>
-                    <input type="text" id="street" name="Street" class="form-control" placeholder="Street" asp-for="Street"/>
+                    <input type="text" id="street" name="Street" class="form-control" placeholder="Street" asp-for="Street" />
                 </div>
                 <div class="form-group">
                     <label asp-for="City"></label>
-                    <input type="text" id="city" name="City" class="form-control" placeholder="City" asp-for="City"/>
+                    <input type="text" id="city" name="City" class="form-control" placeholder="City" asp-for="City" />
                 </div>
                 <div class="form-group">
                     <label asp-for="State"></label>
-                    <input type="text" id="state" name="State" class="form-control" placeholder="State" asp-for="State"/>
+                    <input type="text" id="state" name="State" class="form-control" placeholder="State" asp-for="State" />
                 </div>
                 <div class="form-group">
                     <label asp-for="Zip"></label>
-                    <input type="text" id="zip" name="Zip" class="form-control" placeholder="Postal code" asp-for="Zip"/>
+                    <input type="text" id="zip" name="Zip" class="form-control" placeholder="Postal code" asp-for="Zip" />
                 </div>
                 <div class="form-group">
                     <label asp-for="Country"></label>
-                    <input type="text" id="country" name="Country" class="form-control" placeholder="Country" asp-for="Country"/>
+                    <input type="text" id="country" name="Country" class="form-control" placeholder="Country" asp-for="Country" />
                 </div>
                 <div class="form-group">
                     <label asp-for="Fax"></label>
-                    <input type="tel" id="fax" name="Fax" class="form-control" placeholder="Fax" asp-for="Fax"/>
+                    <input type="tel" id="fax" name="Fax" class="form-control" placeholder="Fax" asp-for="Fax" />
                 </div>
                 <div class="form-group">
                     <label asp-for="Website"></label>
                     <input type="url" id="website" name="Website" class="form-control" placeholder="www.your-website.com" asp-for="Website" />
                 </div>
-                <button type="submit" class="generate-btn">Generate QR Code</button>
+                <button type="submit" class="generate-btn">Edit QR Code</button>
             </form>
         </div>
         <div class="qr-code-section">
@@ -220,60 +220,60 @@
     </div>
 
     <script>
-        function generateQRCode() {
-            const firstName = document.getElementById("first-name").value.trim();
-            const lastName = document.getElementById("last-name").value.trim();
-            const mobile = document.getElementById("mobile").value.trim();
-            const phone = document.getElementById("phone").value.trim();
-            const fax = document.getElementById("fax").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const company = document.getElementById("company").value.trim();
-            const jobTitle = document.getElementById("job-title").value.trim();
-            const street = document.getElementById("street").value.trim();
-            const city = document.getElementById("city").value.trim();
-            const state = document.getElementById("state").value.trim();
-            const zip = document.getElementById("zip").value.trim();
-            const country = document.getElementById("country").value.trim();
-            const website = document.getElementById("website").value.trim();
+                function generateQRCode() {
+                    const firstName = document.getElementById("first-name").value.trim();
+                    const lastName = document.getElementById("last-name").value.trim();
+                    const mobile = document.getElementById("mobile").value.trim();
+                    const phone = document.getElementById("phone").value.trim();
+                    const fax = document.getElementById("fax").value.trim();
+                    const email = document.getElementById("email").value.trim();
+                    const company = document.getElementById("company").value.trim();
+                    const jobTitle = document.getElementById("job-title").value.trim();
+                    const street = document.getElementById("street").value.trim();
+                    const city = document.getElementById("city").value.trim();
+                    const state = document.getElementById("state").value.trim();
+                    const zip = document.getElementById("zip").value.trim();
+                    const country = document.getElementById("country").value.trim();
+                    const website = document.getElementById("website").value.trim();
 
-            if (!firstName && !lastName && !mobile && !phone && !fax && !email &&
-                !company && !jobTitle && !street && !city && !state && !zip &&
-                !country && !website) {
-                document.getElementById("qr-code").innerHTML = "QR Code Preview";
-                return;
-            }
+                    if (!firstName && !lastName && !mobile && !phone && !fax && !email &&
+                        !company && !jobTitle && !street && !city && !state && !zip &&
+                        !country && !website) {
+                        document.getElementById("qr-code").innerHTML = "QR Code Preview";
+                        return;
+                    }
 
-            const vCard = `BEGIN:VCARD
-VERSION:3.0
-N:${lastName};${firstName}
-FN:${firstName} ${lastName}
-ORG:${company}
-TITLE:${jobTitle}
-TEL;TYPE=CELL:${mobile}
-TEL;TYPE=WORK,VOICE:${phone}
-TEL;TYPE=FAX:${fax}
-ADR;TYPE=WORK:;;${street};${city};${state};${zip};${country}
-EMAIL:${email}
-URL:${website}
-END:VCARD`.trim();
+                    const vCard = `BEGIN:VCARD
+        VERSION:3.0
+        N:${lastName};${firstName}
+        FN:${firstName} ${lastName}
+        ORG:${company}
+        TITLE:${jobTitle}
+        TEL;TYPE=CELL:${mobile}
+        TEL;TYPE=WORK,VOICE:${phone}
+        TEL;TYPE=FAX:${fax}
+        ADR;TYPE=WORK:;;${street};${city};${state};${zip};${country}
+        EMAIL:${email}
+        URL:${website}
+        END:VCARD`.trim();
 
-            const vCardEncoded = encodeURIComponent(vCard);
+                    const vCardEncoded = encodeURIComponent(vCard);
 
-            const qrCodeUrl = `https://quickchart.io/qr?text=${vCardEncoded}&size=300`;
+                    const qrCodeUrl = `https://quickchart.io/qr?text=${vCardEncoded}&size=300`;
 
-            const qrCodeElement = document.getElementById("qr-code");
-            qrCodeElement.innerHTML = `<img src="${qrCodeUrl}" alt="QR Code" />`;
+                    const qrCodeElement = document.getElementById("qr-code");
+                    qrCodeElement.innerHTML = `<img src="${qrCodeUrl}" alt="QR Code" />`;
 
-            const downloadBtn = document.getElementById("download-btn");
-            downloadBtn.href = qrCodeUrl;
-            downloadBtn.style.display = "block";
-        }
+                    const downloadBtn = document.getElementById("download-btn");
+                    downloadBtn.href = qrCodeUrl;
+                    downloadBtn.style.display = "block";
+                }
 
-        document.querySelectorAll("#vcard-form input").forEach(input => {
-            input.addEventListener("input", generateQRCode);
-        });
+                document.querySelectorAll("#vcard-form input").forEach(input => {
+                    input.addEventListener("input", generateQRCode);
+                });
 
-        generateQRCode();
+                generateQRCode();
     </script>
 
 

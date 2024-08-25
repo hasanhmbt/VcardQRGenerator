@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VcardQRGenerator.Data;
 
@@ -10,9 +11,11 @@ using VcardQRGenerator.Data;
 namespace VcardQRGenerator.Migrations
 {
     [DbContext(typeof(VcardDbContext))]
-    partial class VcardDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240825123747_update2")]
+    partial class update2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
